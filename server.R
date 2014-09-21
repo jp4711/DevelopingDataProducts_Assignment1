@@ -38,7 +38,7 @@ shinyServer(function(input, output, session) {
         )
     })
     
-    output$downloadData <- downloadHandler(
+    output$saveData <- downloadHandler(
         filename = function() { 
             paste(input$dataset, '.csv', sep='') 
         },

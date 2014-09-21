@@ -10,7 +10,13 @@ shinyUI(fluidPage(
     h3("Loading Data Sets with Progress Inidication"),
     # set title    
     #titlePanel("Data Set Viewer"),
-        
+    helpText("Note: this application demonstrats:"),
+
+    helpText("* the use of progress indicator",
+             "during long running tasks. When loading the 'pml' data set a progress indicator is shwon."),
+    
+    helpText("* how to interactevly save data sets or results."),
+    
     #create site bar layout with left side panel and main panel
     sidebarLayout(
         # side bar panel 
@@ -18,12 +24,16 @@ shinyUI(fluidPage(
             # select data set with selectInput
             selectInput("dataset", "Choose a dataset:", 
                         choices = c( "cars", "rock", "pressure", "pml")),
-            #dowload button to trigger operation
-            downloadButton('downloadData', 'Download'),
             #numeric input for number of rows
             numericInput("numRows", "Number of observations to view:", 10),
             #numeric input for number of columns
-            numericInput("numColums", "Number of variables to view:", 7)
+            numericInput("numColums", "Number of variables to view:", 7),
+            
+            helpText("Save the currently loaded data set to disk as csv file.",
+                     "With this any data set or result can be saved interactively."),
+            #save data button to trigger save operatioin
+            downloadButton('saveData', 'Save data set')
+            #saveDataButton('saveData', 'Save data set')
             
         ),
                 
