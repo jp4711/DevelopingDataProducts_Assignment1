@@ -1,4 +1,7 @@
 
+library(shiny)
+library(ggplot2)
+
 library(shinyIncubator)
 #library(shiny)
 library(datasets)
@@ -14,16 +17,18 @@ shinyServer(function(input, output, session) {
                "pressure" = pressure,
                "cars" = cars,
                "pml" = {
+                   # download file if not on machine
                    if (!file.exists("./data/pml-training.csv")) {
                        download.file("http://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv", 
                                      destfile = "./data/pml-training.csv")
                    }
+                   # display progress bar since loading take some time
                    # Use min/max and setProgress(value=x) for progress bar
                    withProgress(session, min = 0, max = 10, {
-                        setProgress(message = "Dowloading data set ...")
+                        setProgress(message = "Loading data set ...")
                         for (i in 1:10) {
                             setProgress(value = i)
-                            Sys.sleep(0.3)
+                            Sys.sleep(0.4)
                         }
                    })
                    

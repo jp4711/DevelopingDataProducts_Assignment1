@@ -1,10 +1,13 @@
+library(shiny)
+library(ggplot2)
+
 library(shinyIncubator)
 
 # use fluid page 
 shinyUI(fluidPage(
     #init progress 
     progressInit(),
-    h2("Loading Data Sets with Progress Inidication"),
+    h3("Loading Data Sets with Progress Inidication"),
     # set title    
     #titlePanel("Data Set Viewer"),
         
@@ -14,7 +17,7 @@ shinyUI(fluidPage(
         sidebarPanel(
             # select data set with selectInput
             selectInput("dataset", "Choose a dataset:", 
-                        choices = c( "pml", "rock", "pressure", "cars")),
+                        choices = c( "cars", "rock", "pressure", "pml")),
             #dowload button to trigger operation
             downloadButton('downloadData', 'Download'),
             #numeric input for number of rows
